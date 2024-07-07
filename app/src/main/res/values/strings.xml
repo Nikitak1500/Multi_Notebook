@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Multi Notebook</string>
+    <string name="add_note">Add new note</string>
 </resources>
