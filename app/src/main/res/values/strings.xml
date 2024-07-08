@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Multi Notebook</string>
     <string name="add_note">Add new note</string>
+    <string name="title">Note title</string>
+    <string name="content">Note description</string>
+    <string name="save">Save</string>
 </resources>
