@@ -3,9 +3,11 @@ package com.nikitak.multinotebook.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.nikitak.multinotebook.NoteDatabase
 import com.nikitak.multinotebook.models.Note
 import com.nikitak.multinotebook.repositories.NoteRepository
+import kotlinx.coroutines.launch
 
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: NoteRepository
@@ -17,7 +19,11 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         allNotes = repository.allNotes
     }
 
-    suspend fun insert(note: Note) = repository.insert(note)
+    fun insert(note: Note) = viewModelScope.launch {
+        repository.insert(note)
+    }
 
-    suspend fun delete(note: Note) = repository.delete(note)
+    fun delete(note: Note) = viewModelScope.launch {
+        repository.delete(note)
+    }
 }
