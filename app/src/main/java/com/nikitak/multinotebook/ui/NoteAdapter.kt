@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nikitak.multinotebook.R
 import com.nikitak.multinotebook.models.Note
 
-class NoteAdapter(private val deleteNote: (Note) -> Unit) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(
+    private val deleteNote: (Note) -> Unit,
+    private val editNote: (Note) -> Unit,
+) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private var notes = emptyList<Note>()
 
@@ -23,6 +26,13 @@ class NoteAdapter(private val deleteNote: (Note) -> Unit) : RecyclerView.Adapter
                     deleteNote.invoke(notes[position])
                 }
                 true
+            }
+
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    editNote.invoke(notes[position])
+                }
             }
         }
     }

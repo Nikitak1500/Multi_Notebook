@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nikitak.multinotebook.models.Note
 import com.nikitak.multinotebook.ui.NoteAdapter
 import com.nikitak.multinotebook.viewmodels.NoteViewModel
 
@@ -30,7 +31,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        noteAdapter = NoteAdapter { note -> noteViewModel.delete(note) }
+        noteAdapter = NoteAdapter(
+            { note -> noteViewModel.delete(note) },
+            { note -> editNote(note) }
+        )
         recyclerView.adapter = noteAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -44,5 +48,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddNoteActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun editNote(note: Note) {
+        val intent = Intent(this, AddNoteActivity::class.java).apply {
+            putExtra("note_id", note.id)
+            putExtra("note_title", note.title)
+            putExtra("note_content", note.content)
+        }
+        startActivity(intent)
     }
 }
