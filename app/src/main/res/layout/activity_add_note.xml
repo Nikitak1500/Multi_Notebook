@@ -6,22 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".AddNoteActivity">
 
-    <EditText
-        android:id="@+id/titleEditText"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="@string/title"
-        android:textSize="18sp" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/saveButton"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="#FFC107">
 
-    <EditText
-        android:id="@+id/contentEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titleEditText"
-        android:layout_margin="16dp"
-        android:hint="@string/content"
-        android:textSize="16sp" />
+        <EditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/title"
+            android:inputType="text"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/contentEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleEditText"
+            android:layout_margin="16dp"
+            android:layout_marginTop="-48dp"
+            android:hint="@string/content"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/saveButton"
